@@ -1,103 +1,153 @@
+'use client'; 
+
 import Image from "next/image";
+import { motion, Variants } from "framer-motion";
+
+// Impor komponen baru dari shadcn/ui
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+// DATA (GANTI DENGAN DATA ANDA)
+const projectsData = [
+  {
+    imageUrl: "/proyek1.png",
+    title: "Platform E-Commerce",
+    description: "Dibangun dengan Next.js, menampilkan produk dan sistem checkout.",
+    tags: ["Next.js", "Tailwind CSS", "Stripe"],
+    link: "https://github.com",
+  },
+  {
+    imageUrl: "/proyek2.png",
+    title: "Aplikasi Manajemen Tugas",
+    description: "Aplikasi task-management dengan React & Firebase.",
+    tags: ["React", "Firebase", "Framer Motion"],
+    link: "https://github.com",
+  },
+];
+const skillsData = ["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Tailwind CSS", "Figma", "Prisma"];
+
+const sectionVariants: Variants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.8, ease: "easeOut" }
+  },
+};
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="flex flex-col items-center p-4 sm:p-8 md:p-12 font-body overflow-x-hidden">
+      
+      <div className="w-full max-w-5xl mx-auto space-y-24 sm:space-y-32 md:space-y-48">
+        
+        {/* HERO SECTION */}
+        <motion.section 
+          id="home" 
+          className="min-h-[80vh] flex flex-col justify-center items-center text-center"
+          initial="hidden"
+          animate="visible"
+          variants={sectionVariants}
+        >
+          <p className="font-mono text-primary mb-4">Halo, nama saya adalah</p>
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-heading text-foreground">
+            [Nama Anda].
+          </h1>
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-heading text-muted-foreground mt-2">
+            Saya membangun aplikasi untuk web.
+          </h2>
+          <p className="max-w-2xl mt-8 text-muted-foreground leading-relaxed">
+            Saya seorang developer dengan spesialisasi membuat (dan sesekali mendesain) pengalaman digital yang luar biasa. Saat ini, saya fokus membangun produk yang aksesibel dan berpusat pada pengguna.
+          </p>
+          <a href="mailto:emailanda@contoh.com" className="mt-12">
+            <Button variant="outline" size="lg" className="font-mono text-lg border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary transition-all duration-300 shadow-lg shadow-primary/10 hover:shadow-primary/20">
+              Hubungi Saya
+            </Button>
+          </a>
+        </motion.section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        {/* PROYEK SAYA */}
+        <motion.section 
+          id="proyek"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={sectionVariants}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <div className="flex items-center gap-4 mb-12">
+            <h2 className="text-4xl font-heading text-foreground whitespace-nowrap">Proyek Pilihan</h2>
+            <div className="w-full h-[1px] bg-border"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {projectsData.map((project, i) => (
+              <motion.div key={project.title}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.5, delay: i * 0.2 }}
+              >
+                <a href={project.link} target="_blank" rel="noopener noreferrer" className="block h-full">
+                  <Card className="h-full bg-card/50 border-border hover:border-primary/50 transition-colors duration-300 flex flex-col group backdrop-blur-sm">
+                    <CardHeader className="p-4">
+                       <div className="w-full h-48 relative rounded-md overflow-hidden">
+                          <Image
+                            src={project.imageUrl}
+                            alt={`Screenshot of ${project.title}`}
+                            fill
+                            style={{ objectFit: 'cover' }}
+                            className="transition-transform duration-500 ease-in-out group-hover:scale-105"
+                          />
+                        </div>
+                    </CardHeader>
+                    <CardContent className="p-4 pt-0 flex-grow flex flex-col">
+                      <CardTitle className="font-heading text-2xl mb-2">{project.title}</CardTitle>
+                      <p className="text-muted-foreground mb-4 flex-grow">{project.description}</p>
+                       <div className="flex flex-wrap gap-2">
+                          {project.tags.map(tag => (
+                            <span key={tag} className="text-xs font-mono bg-primary/10 text-primary px-2 py-1 rounded">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                    </CardContent>
+                  </Card>
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* KONTAK */}
+        <motion.section 
+          id="kontak" 
+          className="text-center py-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={sectionVariants}
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+          <h3 className="font-mono text-primary">03. Apa Selanjutnya?</h3>
+          <h2 className="text-5xl font-heading my-4">Get In Touch</h2>
+          <p className="max-w-xl mx-auto text-muted-foreground leading-relaxed mb-10">
+            Meskipun saya tidak sedang aktif mencari peluang baru, pintu saya selalu terbuka. Jika Anda punya pertanyaan atau hanya ingin menyapa, saya akan berusaha membalasnya!
+          </p>
+          <div className="mt-12">
+            <h3 className="text-2xl font-heading mb-6 text-muted-foreground">Teknologi yang saya gunakan:</h3>
+            <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
+              {skillsData.map(skill => (
+                <div key={skill} className="bg-card text-foreground font-mono text-sm py-2 px-3 border rounded-md">
+                  {skill}
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+      </div>
+
+      <footer className="w-full text-center mt-32 p-4 text-muted-foreground font-mono text-sm">
+        <div>Didesain & Dibuat oleh [Nama Anda]</div>
+        <div>Terinspirasi oleh para kreator di internet</div>
       </footer>
-    </div>
+    </main>
   );
 }
