@@ -6,7 +6,7 @@ const path = require('path');
 const { exec } = require('child_process');
 const url = require('url');
 
-const PORT = 9000;
+const PORT = 80;
 
 // WEB URL CONFIGURATION
 // Set these to match your web server setup
