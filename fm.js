@@ -11,7 +11,7 @@ const PORT = 9000;
 // WEB URL CONFIGURATION
 // Set these to match your web server setup
 const WEB_ROOT = 'C:\\xampp\\htdocs';  // Windows: C:\xampp\htdocs  Linux: /var/www/html
-const BASE_URL = 'http://localhost';    // Your domain: http://localhost or http://yourdomain.com
+const BASE_URL = '';    // Your domain: http://localhost or http://yourdomain.com
 
 // HTML + React Frontend (embedded)
 const HTML_CONTENT = `<!DOCTYPE html>
@@ -955,7 +955,7 @@ const server = http.createServer((req, res) => {
     });
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
     console.log(`✅ File Manager Server running on http://localhost:${PORT}`);
     console.log(`📁 Starting directory: ${process.cwd()}`);
     console.log(`🛑 Press Ctrl+C to stop`);
